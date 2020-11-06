@@ -99,7 +99,10 @@ namespace Cwiczenie2
             return false;
         }
 
-
+        public string [] getZestawDanych()
+        {
+            return zestawDanych;
+        }
 }
 
 }

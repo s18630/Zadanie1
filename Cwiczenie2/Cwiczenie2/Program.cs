@@ -48,11 +48,18 @@ namespace Cwiczenie2
             // 3. Przeszukaj dane  z listy w poszukiwaniu zestawów danych studenta
 
             Console.WriteLine("Przeszukaj dane  z listy w poszukiwaniu zestawów danych studenta");
+            listaZPliku.Add("Agnieszka,Brzęczyszczykiewicz382,Informatyka dzienne po angielsku,Dzienne,4603,2000-02-12,382@pjwstk.edu.pl,Alina,Adam");
 
             DaneStudentow daneStudentow = new DaneStudentow(listaZPliku);
-            //  List<ZestawDanych> zestawDanych =daneStudentow.extractData(listaZPliku);
 
-            //    daneStudentow.setZestawyDanych(zestawDanych);
+
+
+
+
+
+            List<ZestawDanych> zDanych = daneStudentow.GetZestawDanyches();
+
+            
 
             Console.WriteLine(" ");
             Console.WriteLine(" ");
@@ -77,6 +84,9 @@ namespace Cwiczenie2
             // bool spr = sprawdzenieMetodyIsitempty.zawieraPustePole(tabelaSpradzanieDanych);
 
             SpisBledow sp = new SpisBledow();
+
+            ListaStudentow listaStudentowzZestawowDanych = new ListaStudentow(zDanych);
+
 
 
 

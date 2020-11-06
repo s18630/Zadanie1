@@ -41,9 +41,28 @@ namespace Cwiczenie2
                 this.fathersName= args[6];
                 this.studiesName= args[7];
                 this.studiesMode = args[8];
-
+                //oprogramwoac jeszcze jak jakas jest pusta wartosc
             }
             
+
+        }
+        public Student( ZestawDanych zestaw)
+        {
+
+            string[] args = zestaw.getZestawDanych();
+
+            this.indexNumber = args[0];
+            this.fname = args[1];
+            this.lname = args[2];
+            this.birthdate = args[3];
+            this.email = args[4];
+            this.mothersName = args[5];
+            this.fathersName = args[6];
+            this.studiesName = args[7];
+            this.studiesMode = args[8];
+
+            countData = args.Length;
+
 
         }
 

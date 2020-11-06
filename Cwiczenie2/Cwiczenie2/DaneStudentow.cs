@@ -129,6 +129,11 @@ Console.WriteLine(" przed " + iloscrekordowWejsciowych + "----> " + "po" + ilosc
             this.zestawDanychStudentow=zestawyDanych;
         }
 
+        public List <ZestawDanych> GetZestawDanyches()
+        {
+            return zestawDanychStudentow;
+        }
+
 
 
 

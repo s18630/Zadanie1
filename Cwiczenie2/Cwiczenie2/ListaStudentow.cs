@@ -16,6 +16,59 @@ public   class ListaStudentow
             listaStudentow = new List<Student>();
         }
 
+        public ListaStudentow(List <ZestawDanych> zestawDanych)
+        {
+
+            listaStudentow = new List<Student>();
+            addNewStudents(zestawDanych);
+        }
+
+
+
+        public void addNewStudents(List <ZestawDanych> zestaw)
+        {
+            int iloscZestawow = zestaw.Count;
+            int iloscDodanychStudentow = 0;
+
+           foreach(ZestawDanych zd in zestaw)
+            {
+                Console.WriteLine(" próba stworzenia z zestawyu danych studenta");
+                Student nowyStudeny = new Student(zd);
+
+                if (isDuplicate(nowyStudeny) == false)
+                {
+                    Console.WriteLine(" nie jest duplikatem wiec go dodajemy  ");
+
+
+                    listaStudentow.Add(nowyStudeny);
+                    iloscDodanychStudentow++;
+                }
+                else
+                {
+                    Console.WriteLine(" TO DUPLIKAT :(                        ");
+                    Console.WriteLine("    ");
+                }
+                    
+            }
+
+            Console.WriteLine(" wczesniej bylo    " +  iloscZestawow  );
+            Console.WriteLine(" zostało dodanych " + iloscDodanychStudentow);
+            Console.WriteLine(" wyswietl całaą listę                      ");
+
+            showListaStudentow();
+
+
+        }
+
+
+
+
+
+
+
+
+
+
 
         public List<Student> getStudents()
         {
