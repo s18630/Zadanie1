@@ -211,8 +211,21 @@ namespace Cwiczenie2
                 Console.WriteLine("niepoprawne dane");
                 Console.WriteLine(e.Message);
             }
-            
+            Console.WriteLine(" Próba spisywania danych");
+            DaneStudentow sts = new DaneStudentow(pw.content);
+
+
+
+
+
+
+
+
+
+
         }
+
+      
 
 
 

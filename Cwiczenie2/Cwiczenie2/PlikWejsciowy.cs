@@ -5,7 +5,7 @@ using System.IO;
 
 namespace Cwiczenie2
 {
-    public class PlikWejsciowy
+    public class PlikWejsciowy 
     {
         public string path;
         public List<string> content;
@@ -75,8 +75,7 @@ namespace Cwiczenie2
             return content;
         }
 
-
-
+   
     }
 
 
