@@ -4,10 +4,11 @@ using System.Text;
 
 namespace Cwiczenie2
 {
-public  interface FindData <T>
+public interface ExtractData
+        <T>
     {
 
-        public List<T> findData(List<string> lista);
+        public List<T> extractData(List<string> lista);
         
 
 

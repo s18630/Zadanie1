@@ -4,6 +4,7 @@ using System.Text;
 
 namespace Cwiczenie2
 {
+
  public class ZestawDanych
     {
         public string indexNumber;
@@ -16,19 +17,46 @@ namespace Cwiczenie2
         public string studiesName;
         public string studiesMode;
 
+        public string[] zestawDanych;
+        public int iloscKolumn;
     
-    public ZestawDanych(string [] args)
+    public ZestawDanych(string [] zestawDanych)
     {
+            iloscKolumn = 9;
+            if(zestawDanych.Length!= iloscKolumn)
+            {
+                throw new Exception("Zła ilośc dostarczonych do konstruktora danych");
+            }
+            else
+            {
+                this.zestawDanych = zestawDanych;
+            }
 
-            this.indexNumber = args[0];
-            this.fname = args[1];
-            this.lname = args[2];
-            this.birthdate = args[3];
-            this.email = args[4];
-            this.mothersName = args[5];
-            this.fathersName = args[6];
-            this.studiesName = args[7];
-            this.studiesMode = args[8];
+            Console.WriteLine(" Obiekt został stworzony ");
+
+
+
+        }
+
+
+
+
+        public void showZestawDanych()
+        {
+
+            int count = 1;
+
+            foreach( string s in zestawDanych)
+            {
+
+                Console.WriteLine(" Kolumna " + count + ": " + s);
+
+            }
+
+
+
+
+
 
         }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 
 
@@ -75,7 +76,15 @@ namespace Cwiczenie2
             return content;
         }
 
-   
+        public List<string> getFalseContent()
+        {
+
+            List<string> falseContent = content;
+            falseContent.Add("222, 3,2");
+            falseContent.Add(", 3,2");
+
+            return falseContent;
+        }
     }
 
 
