@@ -141,12 +141,77 @@ namespace Cwiczenie2
                 Console.WriteLine("nie mozńa utworzyc pliku");
             }
 
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("STUDENT NIEPORPRAWNY");
+            try {
+            Student s1 = new Student(null); }catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
 
-          
+            Console.WriteLine("STUDENT  ok ");
+
+            string[] daneucznia =
+            {
+                "a","b","c","1","2","3","a","b","c"
+            };
+
+            Student s2 = new Student(daneucznia);
+
+            Console.WriteLine(s2.birthdate);
+
+            ListaStudentow listas = new ListaStudentow();
+            Console.WriteLine(" dodanie studenta do listy");
+            listas.addStudent(s2);
+            listas.showListaStudentow();
+
+            string[] daneuczna =
+           {
+                "a","b","c","1","2","3","a","b","c"
+            };
+
+            Student s3 = new Student(daneuczna);
+            Console.WriteLine(" dodanie studenta do listy");
+            listas.addStudent(s3);
+            listas.showListaStudentow();
+
+            string[] daneucza =
+          {
+                "b","b","c","1","2","3","a","b","c"
+            };
+
+            Student s4 = new Student(daneucza);
+            Console.WriteLine(" dodanie studenta do listy");
+            listas.addStudent(s4);
+            listas.showListaStudentow();
 
 
 
 
+
+            Console.WriteLine("STUDENT NIE ");
+
+            string [] niepoprawnedane=
+            {
+                "a","b","c","1","2","3","a","b","c","4"
+            };
+            try {s2 = new Student(niepoprawnedane);}catch(Exception e)
+            {
+                Console.WriteLine("niepoprawne dane");
+                Console.WriteLine(e.Message);
+            }
+            
         }
 
 
