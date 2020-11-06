@@ -73,9 +73,10 @@ namespace Cwiczenie2
 
 
 
-            ZestawDanych sprawdzenieMetodyIsitempty = new ZestawDanych(tabelaSpradzanieDanych);
-            bool spr = sprawdzenieMetodyIsitempty.zawieraPustePole(tabelaSpradzanieDanych);
+            //ZestawDanych sprawdzenieMetodyIsitempty = new ZestawDanych(tabelaSpradzanieDanych);
+            // bool spr = sprawdzenieMetodyIsitempty.zawieraPustePole(tabelaSpradzanieDanych);
 
+            SpisBledow sp = new SpisBledow();
 
 
 
