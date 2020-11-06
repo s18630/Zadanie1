@@ -100,12 +100,12 @@ Console.WriteLine(" przed " + iloscrekordowWejsciowych + "----> " + "po" + ilosc
 
                 Console.WriteLine(" Dostepne dane:");
 
-                int i = 1;
+                int i = 0;
 
                 foreach (ZestawDanych zestawDanych in zestawDanychStudentow)
-                {
+                {  i++;
                     Console.WriteLine(" Zestaw Danych nr " + i);
-                    i++;
+                  
 
                     zestawDanych.showZestawDanych();
 

@@ -44,10 +44,11 @@ namespace Cwiczenie2
         public void showZestawDanych()
         {
 
-            int count = 1;
+            int count = 0;
 
             foreach( string s in zestawDanych)
             {
+                count++;
 
                 Console.WriteLine(" Kolumna " + count + ": " + s);
 
