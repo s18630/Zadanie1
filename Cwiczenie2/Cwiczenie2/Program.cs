@@ -66,7 +66,15 @@ namespace Cwiczenie2
             Console.WriteLine("Sprawdz zapisane dane ");
             daneStudentow.showData();
 
+            string[] tabelaSpradzanieDanych =
+            {
+             "o","1","22","344","tyy","gh","gf","et","- "
+            };
 
+
+
+            ZestawDanych sprawdzenieMetodyIsitempty = new ZestawDanych(tabelaSpradzanieDanych);
+            bool spr = sprawdzenieMetodyIsitempty.zawieraPustePole(tabelaSpradzanieDanych);
 
 
 
