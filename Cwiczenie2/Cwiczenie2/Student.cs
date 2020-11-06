@@ -51,15 +51,15 @@ namespace Cwiczenie2
 
             string[] args = zestaw.getZestawDanych();
 
-            this.indexNumber = args[0];
-            this.fname = args[1];
-            this.lname = args[2];
-            this.birthdate = args[3];
-            this.email = args[4];
-            this.mothersName = args[5];
-            this.fathersName = args[6];
-            this.studiesName = args[7];
-            this.studiesMode = args[8];
+            this.indexNumber = args[4];
+            this.fname = args[0];
+            this.lname = args[1];
+            this.birthdate = args[5];
+            this.email = args[6];
+            this.mothersName = args[7];
+            this.fathersName = args[8];
+            this.studiesName = args[2];
+            this.studiesMode = args[3];
 
             countData = args.Length;
 
