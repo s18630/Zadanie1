@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Runtime.Serialization.Formatters;
 using System.Text;
+using System.Xml.Serialization;
 
 namespace Cwiczenie2
 {
@@ -10,6 +11,7 @@ namespace Cwiczenie2
     public class ListaStudentow
     {
 
+     
         public List<Student> listaStudentow;
    
 

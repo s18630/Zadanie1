@@ -8,7 +8,7 @@ namespace Cwiczenie2
 
 
     [Serializable]
-
+    [XmlRoot("Root")]
     public class Student
     {
         [XmlAttribute("Id")]

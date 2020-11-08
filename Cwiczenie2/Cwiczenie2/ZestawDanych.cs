@@ -8,31 +8,23 @@ namespace Cwiczenie2
 
  public class ZestawDanych
     {
-        public string indexNumber;
-        public string fname;
-        public string lname;
-        public string birthdate;
-        public string email;
-        public string mothersName;
-        public string fathersName;
-        public string studiesName;
-        public string studiesMode;
-
         public string[] zestawDanych;
         public int iloscKolumn;
-    
-    public ZestawDanych(string [] zestawDanych)
+       
+
+        public ZestawDanych(string [] zestawDanych)
     {
             iloscKolumn = 9;
             if(zestawDanych.Length!= iloscKolumn)
             {
                 throw new Exception("Zła ilośc dostarczonych do konstruktora danych");
+                
             }
             if (zawieraPustePole(zestawDanych))
             {
 
                 throw new Exception(" Jenda z kolumn nawiera nieprawidłową wartość");
-
+                
             }
             else
             {

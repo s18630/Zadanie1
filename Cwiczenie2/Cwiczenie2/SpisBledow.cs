@@ -81,7 +81,7 @@ public  class SpisBledow
 
         }
 
-        public void zapiszDoPliku(string napis)
+  public void zapiszDoPliku(string napis)
         {
             try {
                 
@@ -104,6 +104,30 @@ public  class SpisBledow
             
         }
 
-         
+        public static void zapiszDoPliku(string napis, string sciezka, string nazwaPliku)
+        {
+            try
+            {
+
+                using (System.IO.StreamWriter file =
+                new System.IO.StreamWriter(sciezka, true))
+                {
+                    file.WriteLine(napis);
+                }
+
+            }
+            catch (Exception Ex)
+            {
+                Console.WriteLine("File \"{0}\" nie istnieje", nazwaPliku);
+            }
+
+
+
+
+
+
+        }
+
+
     }
 }

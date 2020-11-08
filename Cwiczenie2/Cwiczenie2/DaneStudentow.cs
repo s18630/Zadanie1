@@ -6,35 +6,31 @@ using System.Text;
 namespace Cwiczenie2
 {
     class DaneStudentow   
-    //  : FindData<ZestawDanych>
+  
     {
-        public List<ZestawDanych> zestawDanychStudentow;
-      
+        public List<ZestawDanych> zestawDanychStudentow { get; set; }
+        public SpisBledow spisBledow;
+
 
         public DaneStudentow(List<string> lista)
         {
             zestawDanychStudentow = new List<ZestawDanych>();
-            
-     extractData(lista);
-         
+            spisBledow = new SpisBledow();
+            extractData(lista);
+
+
         }
 
-        public void     extractData(List<string> lista)
+        public void extractData(List<string> lista)
         {
             int iloscposprawdzeniu = 0;
-
             int iloscrekordowWejsciowych = lista.Count;
-            Console.WriteLine(" ROZPOCZELA SIE METODA dind DAta");
-            //    throw new NotImplementedException();
+
+            
             foreach (string s in lista)
             {
-                Console.WriteLine(" w pentli ");
-
-
+ 
                 string[] studentsData = s.Split(',');
-
-
-                Console.WriteLine(" zła ilość danych?");
 
 
                 try
@@ -42,49 +38,31 @@ namespace Cwiczenie2
                    
                     zestawDanychStudentow.Add(new ZestawDanych(studentsData));
 
-                    foreach (string k in studentsData)
-                    {
-                        Console.WriteLine(k);
-                        Console.WriteLine();
-                    }
-
-                    Console.WriteLine(" koniec   ---------");
-
                     iloscposprawdzeniu++;
 
                 }
                 catch (Exception ex)
                 {
 
-                    Console.WriteLine(" WYSTAPIL BLAD     ");
-                    Console.WriteLine(ex.Message);
+                    DateTime thisDay = DateTime.Today;
+                  
+                    
 
 
 
+                    spisBledow.zapiszDoPliku("ZAPIS : " + thisDay.ToString() +
+                        "\nBłąd w dodawaniu zestawu danych :\n " + s);
+                    string message = ex.Message;
+                    spisBledow.zapiszDoPliku("bład : " + message + "\n");
+
+
+                    Console.WriteLine(" Bład w tworzeniu zestawu danych");
+                    Console.WriteLine(ex.Message + "\n");
 
                 }
 
-
-
-
-                
-
-
-
-
             }
-
-
-
-
-            // zrobić set data i dodać 
-
-          
-
-Console.WriteLine(" przed " + iloscrekordowWejsciowych + "----> " + "po" + iloscposprawdzeniu);
-
-             
-
+            Console.WriteLine(" przed "+ iloscrekordowWejsciowych + "->"+"po "+ iloscposprawdzeniu);
 
         }
 
@@ -121,21 +99,7 @@ Console.WriteLine(" przed " + iloscrekordowWejsciowych + "----> " + "po" + ilosc
             
 
 
-
         }
-
-        public void setZestawyDanych(List<ZestawDanych> zestawyDanych)
-        {
-            this.zestawDanychStudentow=zestawyDanych;
-        }
-
-        public List <ZestawDanych> GetZestawDanyches()
-        {
-            return zestawDanychStudentow;
-        }
-
-
-
 
     }
 }

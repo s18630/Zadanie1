@@ -10,7 +10,7 @@ namespace Cwiczenie2
     {
         public string path;
         public List<string> content;
-        private object ex;
+ 
 
         public PlikWejsciowy(string path)
         {
