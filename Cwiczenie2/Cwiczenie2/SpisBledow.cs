@@ -8,9 +8,9 @@ namespace Cwiczenie2
 {
 public  class SpisBledow
     {
- public string nazwaPliku;
- public string sciezka;
 
+        public string nazwaPliku;
+        public string sciezka;
 
 
         public SpisBledow()
@@ -19,26 +19,27 @@ public  class SpisBledow
             sciezka = @"łog.txt";
 
 
-            otworzPlaik();
+      
             utworzPlik();
-            zapiszDoPliku  ("z konstruktora");
-         otworzPlaik();
+
+            DateTime dt = DateTime.Now;
+            Console.WriteLine(dt.ToString(System.Globalization.CultureInfo.CreateSpecificCulture("fr-FR")));
+
+
+            zapiszDoPliku("Utworzono Plik ");
+            zapiszDoPliku(dt.ToString(System.Globalization.CultureInfo.CreateSpecificCulture("fr-FR")));
+
+            Console.WriteLine("Utworzono Plik ");
+            Console.WriteLine(dt.ToString(System.Globalization.CultureInfo.CreateSpecificCulture("fr-FR")));
         }
 
 
-        /*    public void utworzPlik()
-              {
 
-                  FileStream fs = new FileStream("text.txt", FileMode.OpenOrCreate, FileAccess.ReadWrite);
-                  for (int i = 0; i < 20; i++)
-                  {
-                      fs.WriteByte((byte)i);
-                  }
-                  fs.Close();
 
-              }*/
 
-              public void otworzPlaik()
+
+
+              public void otworzPlik()
               {
                   try
                   {
@@ -59,6 +60,7 @@ public  class SpisBledow
 
         // wyswietl sciezke do pliku 
 
+
         public void utworzPlik()
         {
 
@@ -68,10 +70,12 @@ public  class SpisBledow
         
             if (!System.IO.File.Exists(sciezka))
             {
+
                 using (System.IO.FileStream fs = System.IO.File.Create(sciezka))
                 {
                     Console.WriteLine(" Stworzono plik ");
                 }
+
             }
             else
             {
@@ -81,30 +85,9 @@ public  class SpisBledow
 
         }
 
-  public void zapiszDoPliku(string napis)
-        {
-            try {
-                
-                using (System.IO.StreamWriter file =
-                new System.IO.StreamWriter(sciezka, true))
-                {
-                    file.WriteLine(napis);
-                }
 
-            }
-            catch(Exception Ex)
-            {
-  Console.WriteLine("File \"{0}\" nie istnieje"   , nazwaPliku);
-            }
-           
-            
-            
-              
 
-            
-        }
-
-        public static void zapiszDoPliku(string napis, string sciezka, string nazwaPliku)
+        public void zapiszDoPliku(string napis)
         {
             try
             {
@@ -118,7 +101,9 @@ public  class SpisBledow
             }
             catch (Exception Ex)
             {
+
                 Console.WriteLine("File \"{0}\" nie istnieje", nazwaPliku);
+
             }
 
 
@@ -127,6 +112,7 @@ public  class SpisBledow
 
 
         }
+
 
 
     }

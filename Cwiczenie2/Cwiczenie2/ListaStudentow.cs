@@ -60,26 +60,47 @@ namespace Cwiczenie2
 
            foreach(ZestawDanych zd in zestawyDanych)
             {
-                Student nowyStudeny = new Student(zd);
-
-                if (isDuplicate(nowyStudeny) == false)
-                {
-                   
-                    Console.WriteLine(" nie jest duplikatem wiec go dodajemy  ");
 
 
-                    listaStudentow.Add(nowyStudeny);
-                    iloscDodanychStudentow++;
+                try {
+
+                    Student nowyStudeny = new Student(zd);
+
+                    if (isDuplicate(nowyStudeny) == false)
+                    {
+
+                        Console.WriteLine(" nie jest duplikatem wiec go dodajemy  ");
+
+
+                        listaStudentow.Add(nowyStudeny);
+                        iloscDodanychStudentow++;
+
+                    }
+                    else
+                    {
+                        liczaDuplikatow++;
+                        spis.zapiszDoPliku(" Wykryty duplikat nr " + liczaDuplikatow);
+
+                        Console.WriteLine(" Zapis niemożliwy, to duplikat  ");
+                        Console.WriteLine();
+                    }
+
 
                 }
-                else
+                catch(Exception ex)
                 {
-                    liczaDuplikatow++;
-                    spis.zapiszDoPliku(" Wykryty duplikat nr " + liczaDuplikatow);
-                   
-                    Console.WriteLine(" Zapis niemożliwy, to duplikat  ");
+
+                    spis.zapiszDoPliku(" Wystąpił bład :  " + ex.Message);
+
+                    Console.WriteLine("Wystąpił bład :  " + ex.Message );
                     Console.WriteLine();
+
+
+
+
                 }
+
+
                     
             }
 
