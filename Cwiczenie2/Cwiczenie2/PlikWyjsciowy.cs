@@ -17,16 +17,28 @@ namespace Cwiczenie2
     {
 
         List<string> listaDanych;
-
-        public PlikWyjsciowy(List<string> listaDanych)
+        string sciezka;
+        string formatDanych;
+        public PlikWyjsciowy(List<string> listaDanych,string sciezkaDocelowa, string formatDanych)
         {
 
             this.listaDanych = listaDanych;
+            // metoda na sprawdzenie czy dziala scieżka
+            sciezka = sciezkaDocelowa;
+
+            // sprawdzenie jaki jest format 
+            //domyslne arg
             UtorzeniePlikuXML();
+           
 
 
 
         }
+
+
+
+
+
 
 
         public void UtorzeniePlikuXML()
@@ -80,7 +92,7 @@ namespace Cwiczenie2
             rootElement.Add(cust);
           
  //         Console.WriteLine(studentXml.ToString());
-            studentXml.Save("myData.xml");
+            studentXml.Save(sciezka);
   //        Console.ReadKey();
 
 

@@ -20,7 +20,7 @@ namespace Cwiczenie2
                 this.path = path;
             }else
             {
-                throw new Exception(" Scieżka nei istnieje");
+                throw new Exception(" Scieżka nie istnieje");
             }
 
             content = new List<string>();
