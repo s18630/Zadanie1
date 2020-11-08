@@ -1,22 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Xml.Serialization;
 
 namespace Cwiczenie2
 {
-  public class Student
-    {
 
-        public string indexNumber;
-        public string fname;
-        public string lname;
-        public string birthdate;
-        public string email;
-        public string mothersName;
-        public string fathersName;
-        public string studiesName;
-        public string studiesMode;
-        public int countData;
+
+    [Serializable]
+
+    public class Student
+    {
+        [XmlAttribute("Id")]
+
+        public string indexNumber { get; set; }
+        [XmlElement(ElementName = "fname")]
+        public string fname { get; set; }
+        [XmlElement(ElementName = "lname")]
+        public string lname { get; set; }
+        [XmlElement(ElementName = "birthdate")]
+        public string birthdate { get; set; }
+        [XmlElement(ElementName = "email")]
+        public string email { get; set; }
+        [XmlElement(ElementName = "mothersName")]
+        public string mothersName { get; set; }
+        [XmlElement(ElementName = "fathersName")]
+        public string fathersName { get; set; }
+        [XmlElement(ElementName = "studiesName")]
+        public string studiesName { get; set; }
+        [XmlElement(ElementName = "studiesMode")]
+        public string studiesMode { get; set; }
+        public int countData { get; set; }
 
 
         public Student( string [] args)
@@ -44,6 +58,11 @@ namespace Cwiczenie2
                 //oprogramwoac jeszcze jak jakas jest pusta wartosc
             }
             
+
+        }
+        public Student()
+        {
+
 
         }
         public Student( ZestawDanych zestaw)

@@ -1,14 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net;
+using System.Xml;
+using System.Xml.Linq;
 using System.Xml.Schema;
+using System.Xml.Serialization;
 
 namespace Cwiczenie2
 {
     class Program
     {
-     
+
 
         public enum FormatDanych
         {
@@ -19,90 +23,147 @@ namespace Cwiczenie2
         static void Main(string[] args)
         {
 
-            // 1. pobieram plik cvs istniejacy na komputerze 
-
-            Console.WriteLine("pobieram plik cvs istniejacy na komputerze");
-            PlikWejsciowy plikWejsciowy = new PlikWejsciowy(@"dane.csv");
-            Console.WriteLine("wyswietlam zawartosc pliku na ekran");
-          //plikWejsciowy.showContent();
+            PlikWejsciowy pw = new PlikWejsciowy();
+            DaneStudentow ds = new DaneStudentow(pw.content);
+            ListaStudentow ls = new ListaStudentow(ds.zestawDanychStudentow);
+            List<Student>list = ls.listaStudentow;
 
 
-            //2. pobierz dane z pliku cvs i przechowaj w zmiennej
-            Console.WriteLine("pobierz dane z pliku cvs i przechowaj w zmiennej");
-            List<string> listaZPliku = plikWejsciowy.getContent();
-            Console.WriteLine("sprawdzamy przypisany do listy pobrany content  ");
-            foreach(string s in listaZPliku)
+            // Create the text file.
+            string csvString = @"GREAL,Great Lakes Food Market,Howard Snyder,Marketing Manager,(503) 555-7555,2732 Baker Blvd.,Eugene,OR,97403,USA
+HUNGC,Hungry Coyote Import Store,Yoshi Latimer,Sales Representative,(503) 555-6874,City Center Plaza 516 Main St.,Elgin,OR,97827,USA
+LAZYK,Lazy K Kountry Store,John Steel,Marketing Manager,(509) 555-7969,12 Orchestra Terrace,Walla Walla,WA,99362,USA
+LETSS,Let's Stop N Shop,Jaime Yorres,Owner,(415) 555-5938,87 Polk St. Suite 5,San Francisco,CA,94117,USA";
+        File.WriteAllText("cust.csv", csvString);
+
+
+            DateTime thisDay = DateTime.Today;
+            // Display the date in the default (general) format.
+            string data = thisDay.ToString();
+            XElement cust = new XElement("uczelnie",
+           new XAttribute("createdAt", data),
+           new XAttribute("author", "Weronika Jaworek"),
+
+          from str in pw.content
+          let fields = str.Split(',')
+          select new XElement("Customer",
+              new XAttribute("CustomerID", fields[0]),
+              new XElement("CompanyName", fields[1]),
+              new XElement("ContactName", fields[2]),
+              new XElement("ContactTitle", fields[3]),
+              new XElement("Phone", fields[4]),
+              new XElement("FullAddress",
+                  new XElement("Address", fields[5]),
+                  new XElement("City", fields[6]),
+                  new XElement("Region", fields[7]),
+                  new XElement("PostalCode", fields[8])
+
+              )
+          )
+          );
+
+
+            XmlWriterSettings settings = new XmlWriterSettings();
+            settings.Indent = true;
+            settings.OmitXmlDeclaration = true;
+            settings.NewLineOnAttributes = true;
+
+     var    writer = XmlWriter.Create(Console.Out, settings);
+
+            writer.WriteStartElement("uczelnia");
+            writer.WriteAttributeString("orderID", "367A54");
+            writer.WriteAttributeString("date", "2001-05-03");
+            Console.WriteLine(cust);
+            writer.WriteEndElement();
+         writer.Flush();
+
+
+
+            /*     // Read into an array of strings.
+        //         string[] source = File.ReadAllLines("cust.csv");
+                   XElement cust = new XElement("uczelnie",
+                    new XAttribute("createdAt", data),
+                    new XAttribute("author", "Weronika Jaworek"), 
+
+                   from str in pw.content
+                   let fields = str.Split(',')
+                   select new XElement("Customer",
+                       new XAttribute("CustomerID", fields[0]),
+                       new XElement("CompanyName", fields[1]),
+                       new XElement("ContactName", fields[2]),
+                       new XElement("ContactTitle", fields[3]),
+                       new XElement("Phone", fields[4]),
+                       new XElement("FullAddress",
+                           new XElement("Address", fields[5]),
+                           new XElement("City", fields[6]),
+                           new XElement("Region", fields[7]),
+                           new XElement("PostalCode", fields[8])
+
+                       )
+                   )
+                   ); */
+            //    Console.WriteLine(cust);
+
+
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+
+
+            XmlRootAttribute oRootAttr = new XmlRootAttribute();
+            oRootAttr.ElementName = "Persons";
+            oRootAttr.IsNullable = true;
+            XmlSerializer oSerializer = new XmlSerializer(typeof(List<Student>),oRootAttr);
+            StreamWriter oStreamWriter = null;
+            try
             {
-                Console.WriteLine(s);
+                oStreamWriter = new StreamWriter("person.xml");
+                oSerializer.Serialize(oStreamWriter, list      );
             }
-
-            Console.WriteLine("pobierz falszywe cvs i przechowaj w zmiennej");
-            listaZPliku = plikWejsciowy.getFalseContent();
-            Console.WriteLine("sprawdzamy przypisany do listy pobrany content  ");
-            foreach (string s in listaZPliku)
+            catch (Exception oException)
             {
-                Console.WriteLine(s);
+                Console.WriteLine("Aplikacja wygenerowała następujący wyjątek: " + oException.Message);
             }
-
-
-            // 3. Przeszukaj dane  z listy w poszukiwaniu zestawów danych studenta
-
-            Console.WriteLine("Przeszukaj dane  z listy w poszukiwaniu zestawów danych studenta");
-            listaZPliku.Add("Agnieszka,Brzęczyszczykiewicz382,Informatyka dzienne po angielsku,Dzienne,4603,2000-02-12,382@pjwstk.edu.pl,Alina,Adam");
-
-            DaneStudentow daneStudentow = new DaneStudentow(listaZPliku);
-
-
-
-
-
-
-            List<ZestawDanych> zDanych = daneStudentow.GetZestawDanyches();
-
-            
-
-            Console.WriteLine(" ");
-            Console.WriteLine(" ");
-            Console.WriteLine(" ");
-            Console.WriteLine(" ");
-            Console.WriteLine(" ");
-            Console.WriteLine(" ");
-            Console.WriteLine(" ");
-
-
-            Console.WriteLine("Sprawdz zapisane dane ");
-            daneStudentow.showData();
-
-            string[] tabelaSpradzanieDanych =
+            finally
             {
-             "o","1","22","344","tyy","gh","gf","et","- "
-            };
-
-
-
-            //ZestawDanych sprawdzenieMetodyIsitempty = new ZestawDanych(tabelaSpradzanieDanych);
-            // bool spr = sprawdzenieMetodyIsitempty.zawieraPustePole(tabelaSpradzanieDanych);
-
-            SpisBledow sp = new SpisBledow();
-
-            ListaStudentow listaStudentowzZestawowDanych = new ListaStudentow(zDanych);
-
-
+                if (null != oStreamWriter)
+                {
+                    oStreamWriter.Dispose();
+                }
+            }
 
 
 
         }
 
+       
 
 
 
 
 
 
+
+
+
+
+
+
+
+
+   
 
     }
-
-    }
+}
 
 
 

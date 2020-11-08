@@ -5,7 +5,9 @@ using System.Text;
 
 namespace Cwiczenie2
 {
-public   class ListaStudentow
+    [Serializable]
+
+    public class ListaStudentow
     {
 
         public List<Student> listaStudentow;
