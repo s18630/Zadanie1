@@ -39,9 +39,10 @@ namespace Cwiczenie2
                 ListaStudentow ls = new ListaStudentow(ds.zestawDanychStudentow);
                 List<Student> list = ls.listaStudentow;
             List<string> lista = ls.listaStudent;
+            PlikWyjsciowy pwyj = new PlikWyjsciowy(lista);
 
 
-            string[] s = {
+   /*       string[] s = {
                "Agnieszka","Brzęczyszczykiewicz382","Informatyka dzienne po angielsku","Dzienne",
                 "4603","2000-02-12","382@pjwstk.edu.pl","lina", "Adam"
             };
@@ -171,18 +172,6 @@ LETSS,Let's Stop N Shop,Jaime Yorres,Owner,(415) 555-5938,87 Polk St. Suite 5,Sa
             //    Console.WriteLine(cust);
 
 
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
 
             /*
                         XmlRootAttribute oRootAttr = new XmlRootAttribute();
@@ -209,7 +198,7 @@ LETSS,Let's Stop N Shop,Jaime Yorres,Owner,(415) 555-5938,87 Polk St. Suite 5,Sa
 
 
                         */
-            var studentXml = new XDocument();
+     /*     var studentXml = new XDocument();
 
 
 
@@ -250,13 +239,13 @@ LETSS,Let's Stop N Shop,Jaime Yorres,Owner,(415) 555-5938,87 Polk St. Suite 5,Sa
                 rootElement.Add(s1   );
             }
 
-*/          // Now, we will read the Created File  
+*/  /*      // Now, we will read the Created File  
             Console.WriteLine(studentXml.ToString());
             studentXml.Save("myData.xml");
             Console.ReadKey();
 
 
-            Console.Write("aaaaa");
+            Console.Write("aaaaa"); */
 
         }
 
