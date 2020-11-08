@@ -9,10 +9,15 @@ namespace Cwiczenie2
 
 
     [Serializable]
-    [XmlRoot("Root")]
+    [XmlRoot("Student")]
     public class Student
     {
-        [XmlAttribute("Id")]
+
+
+      
+
+
+        [XmlAttribute("indexNumber")]
         public string indexNumber { get; set; }
 
 
@@ -56,6 +61,7 @@ namespace Cwiczenie2
         {
 
             string[] args = zestaw.getZestawDanych();
+            
 
             this.indexNumber = args[4];
             this.fname = args[0];
@@ -68,6 +74,13 @@ namespace Cwiczenie2
             this.studiesMode = args[3];
 
             countData = args.Length;
+
+
+        }
+        public Student()
+        {
+
+           
 
 
         }
