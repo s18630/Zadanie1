@@ -44,9 +44,11 @@ public   class DaneStudentow
                 catch (Exception ex)
                 {
 
-                    DateTime dt= DateTime.Today;
-                  
-                    spisBledow.zapiszDoPliku("ZAPIS : " + dt.ToString(System.Globalization.CultureInfo.CreateSpecificCulture("fr-FR")) +
+                    DateTime dt = DateTime.Now;
+                    string dataString = dt.ToString(System.Globalization.CultureInfo.CreateSpecificCulture("fr-FR"));
+
+
+                    spisBledow.zapiszDoPliku("ZAPIS : " + dataString+
                         "\nBłąd w dodawaniu zestawu danych :\n " + s);
                     string message = ex.Message;
                     spisBledow.zapiszDoPliku("bład : " + message + "\n");

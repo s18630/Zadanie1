@@ -36,7 +36,21 @@ namespace Cwiczenie2
         }
 
 
+        public PlikWyjsciowy(List<string> listaDanych )
+        {
 
+            this.listaDanych = listaDanych;
+            // metoda na sprawdzenie czy dziala scieżka
+            sciezka = @"żesult.xml";
+             formatDanych = "xml";
+            // sprawdzenie jaki jest format 
+            //domyslne arg
+            UtorzeniePlikuXML();
+
+
+
+
+        }
 
 
 

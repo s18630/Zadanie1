@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Runtime.CompilerServices;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Schema;
@@ -23,34 +24,246 @@ namespace Cwiczenie2
 
 
 
+            Console.WriteLine("LISYA ARGUMENÓW " + args.Length);
 
+            SpisBledow zapisBledow = new SpisBledow();
 
-
-
-
-
-
-
-
-
-
-            PlikWejsciowy pw = new PlikWejsciowy();
-            DaneStudentow ds = new DaneStudentow(pw.content);
-            ListaStudentow ls = new ListaStudentow(ds.zestawDanychStudentow);
-            List<Student> list = ls.listaStudentow;
-            List<string> lista = ls.listaStudent;
-            PlikWyjsciowy pwyj = new PlikWyjsciowy(lista, "sprawdzenie.xml", "xml");
-            string[] ars = new string[2]
-
+            //gdy nei dostawczono argumentow
+            if ( args.Length == 0)
             {
-                "ddddd",
-                "sss.cvs" };
 
-            Console.WriteLine(czySciezkaCVS(ars[1]));
 
-            Console.WriteLine(czyFormat(ars[1]));
-            Console.WriteLine(czyFormat("xml"));
-            Console.WriteLine(czySciezkaDocelow(".xml"));
+                zapisBledow.zapiszDoPliku(" Nie dostarczono argumentów ");
+                PlikWejsciowy pw = new PlikWejsciowy();
+                DaneStudentow ds = new DaneStudentow(pw.content);
+                ListaStudentow ls = new ListaStudentow(ds.zestawDanychStudentow);
+                List<Student> list = ls.listaStudentow;
+                List<string> lista = ls.listaStudent;
+                PlikWyjsciowy pwyj = new PlikWyjsciowy(lista);
+
+            }
+
+
+
+            if (args.Length > 3)
+            {
+
+
+                zapisBledow.zapiszDoPliku(" Dostarczono za dużo argumentow");
+                PlikWejsciowy pw = new PlikWejsciowy();
+                DaneStudentow ds = new DaneStudentow(pw.content);
+                ListaStudentow ls = new ListaStudentow(ds.zestawDanychStudentow);
+                List<Student> list = ls.listaStudentow;
+                List<string> lista = ls.listaStudent;
+                PlikWyjsciowy pwyj = new PlikWyjsciowy(lista);
+
+            }
+
+
+
+            string path = @"C:\Users\weron\OneDrive\Pulpit\plikdoTestó\TEST.csv";
+            if (File.Exists(path))
+            {
+                Console.WriteLine("sciezka istnieje");
+            }
+            else
+            {
+                Console.WriteLine("sciezka NIEnieje");
+            }
+
+           
+
+
+    //      Console.WriteLine(czySciezkaCVS("C:\Users\weron\OneDrive\Pulpit\plikdoTestó\TEST.csv"));
+
+
+
+
+
+            if (args.Length <= 3 && args.Length >0)
+            {
+                string sciezka = @"data.csv";
+
+
+
+                foreach (string s in args)
+                {
+
+
+
+
+
+                    Console.WriteLine();
+
+                    Console.WriteLine();
+
+                    bool konsowka = s.EndsWith(".csv");
+                    bool koncewkazaprostrofem = s.EndsWith(".csv" + '\u0022');
+
+                    if (konsowka == true || koncewkazaprostrofem == true)
+                    {
+                        if(konsowka == true)
+                        {
+
+                            Console.WriteLine("rowna się true" + s);
+                            sciezka = s;
+
+                        }
+
+
+
+
+
+                        if (koncewkazaprostrofem == true)
+                        {
+                            var replace = s.Replace("\u0022", "");
+                            Console.WriteLine("Zastopiona ściezka:" + replace);
+                            sciezka = replace;
+                        }
+
+                      
+                    }
+
+                    
+
+
+
+
+
+
+                }var replacement = sciezka.Replace("data.csv", sciezka);
+                    Console.WriteLine("Zastopiona ściezka:" + replacement);
+                    Console.WriteLine("WYNIKOWA SCIEZKA" + replacement);
+
+
+                    Console.WriteLine("UWAGA SPRAWDZAM CZY SCIEZKA ISTNIEJE");
+
+                    if (File.Exists(sciezka))
+                    {
+                        Console.WriteLine("sciezka istnieje");
+                    }
+                    else
+                    {
+                        Console.WriteLine("sciezka NIEnieje");
+                    }
+
+
+
+
+
+                PlikWejsciowy plikWejściowy;
+
+                try
+                {
+
+
+                   plikWejściowy = new PlikWejsciowy(sciezka);
+
+                }
+                catch (Exception ex)
+                {
+                    zapisBledow.zapiszDoPliku("Nie udało się stworzyć pliku Wejściowego z podanej ścieżki");
+                    Console.WriteLine(ex.Message);
+                    zapisBledow.zapiszDoPliku(ex.Message);
+                    plikWejściowy = new PlikWejsciowy();
+
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -77,12 +290,7 @@ namespace Cwiczenie2
 
 
 
-        public static bool czySciezkaCVS(string argument)
-        {
-
-            return argument.EndsWith(".cvs");
-
-        }
+     
 
 
 
@@ -104,101 +312,13 @@ namespace Cwiczenie2
 
 
 
-        public static void
-            ZnajdxSciezkeCS(string[] argumenty)
-        {
-            int licznik = 0;
-            int mazymalna = argumenty.Length;
-
-            if (argumenty.Length == 0)
-            {
-                throw new Exception(" Nie dostarczono żadnych parametrów");
-
-            }
-
-            foreach (string s in argumenty)
-            {
-
-
-                if (czySciezkaCVS(s) != true)
-                {
-                    licznik++;
-
-
-
-                    if (licznik == mazymalna)
-                    {
-                        throw new Exception(" Nie podano ścieżki do pliku csv, użyta zostanie domyślna");
-
-                    }
-
-                }
-                else
-                {
-
-                }
+        
+  
 
 
 
 
-            }
-
-
-
-
-        }
-        public static void sprawdźArgumenty(string[] args)
-        {
-
-            SpisBledow sp = new SpisBledow();
-
-            int liczbaArgumentow = args.Length;
-            if (args.Length == 0)
-            {
-                sp.zapiszDoPliku(" Nie podano argumentów, będą wywołane argumenty domyślne ");
-                throw new Exception(" Nie podano argumentów, będą wywołane argumenty domyślne ");
-            }
-
-            if (args.Length > 3)
-            {
-                sp.zapiszDoPliku(" Podano za dużo argumentów ");
-                throw new Exception(" Podano za dużo argumentów ");
-
-            }
-            if (args.Length < 3)
-            {
-                sp.zapiszDoPliku(" Nie podano wszystkich 3 argumentów ");
-
-                foreach (string s in args)
-                {
-
-                    bool czyACSV = czySciezkaCVS(s);
-                   if(czyACSV == true)
-                    {
-
-                        try
-                        {
-                            PlikWejsciowy plikWejsciowy = new PlikWejsciowy(s);
-
-                        }catch(Exception ex)
-                        {
-                            throw new Exception(" Nie udało się stworzyć pliku ");
-
-                        }
-     
-                        
-
-
-
-
-                    }
-
-                }
-
-
-
-
-            }
+            
 
 
 
@@ -209,13 +329,13 @@ namespace Cwiczenie2
 
 
 
-        }
+        } 
 
 
 
 
     }
-}
+
 
 
 
