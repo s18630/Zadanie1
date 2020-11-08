@@ -17,20 +17,20 @@ public  class SpisBledow
         {
             nazwaPliku = "łog.txt";
             sciezka = @"łog.txt";
-
-
       
             utworzPlik();
 
-            DateTime dt = DateTime.Now;
-            Console.WriteLine(dt.ToString(System.Globalization.CultureInfo.CreateSpecificCulture("fr-FR")));
 
 
-            zapiszDoPliku("Utworzono Plik ");
-            zapiszDoPliku(dt.ToString(System.Globalization.CultureInfo.CreateSpecificCulture("fr-FR")));
+          //DateTime dt = DateTime.Now;
+          //Console.WriteLine(dt.ToString(System.Globalization.CultureInfo.CreateSpecificCulture("fr-FR")));
 
-            Console.WriteLine("Utworzono Plik ");
-            Console.WriteLine(dt.ToString(System.Globalization.CultureInfo.CreateSpecificCulture("fr-FR")));
+
+        //  zapiszDoPliku("Utworzono Plik ");
+          //zapiszDoPliku(dt.ToString(System.Globalization.CultureInfo.CreateSpecificCulture("fr-FR")));
+
+        //  Console.WriteLine("Utworzono Plik ");
+         // Console.WriteLine(dt.ToString(System.Globalization.CultureInfo.CreateSpecificCulture("fr-FR")));
         }
 
 
@@ -95,7 +95,7 @@ public  class SpisBledow
                 using (System.IO.StreamWriter file =
                 new System.IO.StreamWriter(sciezka, true))
                 {
-                    file.WriteLine(napis);
+                    file.WriteLine("\n"+   napis);
                 }
 
             }

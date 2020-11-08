@@ -26,6 +26,7 @@ namespace Cwiczenie2
             // metoda na sprawdzenie czy dziala scieżka
             sciezka = sciezkaDocelowa;
 
+            this.formatDanych = formatDanych;
             // sprawdzenie jaki jest format 
             //domyslne arg
             UtorzeniePlikuXML();
@@ -34,6 +35,31 @@ namespace Cwiczenie2
 
 
         }
+
+
+
+
+
+        public PlikWyjsciowy(List<string> listaDanych, string sciezkaDocelowa)
+        {
+
+            this.listaDanych = listaDanych;
+            // metoda na sprawdzenie czy dziala scieżka
+            sciezka = @"żesult.xml";
+            // sprawdzenie  sciezki docelowej
+
+                
+               UtorzeniePlikuXML();
+
+         
+
+
+
+
+
+        }
+
+
 
 
         public PlikWyjsciowy(List<string> listaDanych )
@@ -121,8 +147,7 @@ namespace Cwiczenie2
 
 
 
-
-
+   
 
 
 
