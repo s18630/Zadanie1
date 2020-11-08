@@ -60,48 +60,38 @@ namespace Cwiczenie2
             }
 
 
-
-            string path = @"C:\Users\weron\OneDrive\Pulpit\plikdoTestó\TEST.csv";
-            if (File.Exists(path))
-            {
-                Console.WriteLine("sciezka istnieje");
-            }
-            else
-            {
-                Console.WriteLine("sciezka NIEnieje");
-            }
-
-           
+            /*
+                        string path = @"C:\Users\weron\OneDrive\Pulpit\plikdoTestó\TEST.csv";
+                        if (File.Exists(path))
+                        {
+                            Console.WriteLine("sciezka istnieje");
+                        }
+                        else
+                        {
+                            Console.WriteLine("sciezka NIEnieje");
+                        }
 
 
-    //      Console.WriteLine(czySciezkaCVS("C:\Users\weron\OneDrive\Pulpit\plikdoTestó\TEST.csv"));
+            */
+
+            //      Console.WriteLine(czySciezkaCVS("C:\Users\weron\OneDrive\Pulpit\plikdoTestó\TEST.csv"));
 
 
 
 
+            string sciezka = @"data.csv";
 
             if (args.Length <= 3 && args.Length >0)
             {
-                string sciezka = @"data.csv";
-
+               
 
 
                 foreach (string s in args)
                 {
 
-
-
-
-
-                    Console.WriteLine();
-
-                    Console.WriteLine();
-
                     bool konsowka = s.EndsWith(".csv");
                     bool koncewkazaprostrofem = s.EndsWith(".csv" + '\u0022');
 
-                    if (konsowka == true || koncewkazaprostrofem == true)
-                    {
                         if(konsowka == true)
                         {
 
@@ -110,10 +100,6 @@ namespace Cwiczenie2
 
                         }
 
-
-
-
-
                         if (koncewkazaprostrofem == true)
                         {
                             var replace = s.Replace("\u0022", "");
@@ -121,17 +107,11 @@ namespace Cwiczenie2
                             sciezka = replace;
                         }
 
-                      
-                    }
-
-                    
+                }
 
 
-
-
-
-
-                }var replacement = sciezka.Replace("data.csv", sciezka);
+                
+                var replacement = sciezka.Replace("data.csv", sciezka);
                     Console.WriteLine("Zastopiona ściezka:" + replacement);
                     Console.WriteLine("WYNIKOWA SCIEZKA" + replacement);
 
@@ -139,15 +119,17 @@ namespace Cwiczenie2
                     Console.WriteLine("UWAGA SPRAWDZAM CZY SCIEZKA ISTNIEJE");
 
                     if (File.Exists(sciezka))
-                    {
+                    { 
+                    sciezka = replacement;
                         Console.WriteLine("sciezka istnieje");
                     }
                     else
                     {
+                    zapisBledow.zapiszDoPliku("Posana ścieżka nie istnieje:" + sciezka);
                         Console.WriteLine("sciezka NIEnieje");
                     }
 
-
+               
 
 
 
@@ -155,9 +137,11 @@ namespace Cwiczenie2
 
                 try
                 {
-
+                    Console.WriteLine(" Próba stworzenia pliku");
 
                    plikWejściowy = new PlikWejsciowy(sciezka);
+                    Console.WriteLine(" Próba stworzeny");
+            //      plikWejściowy.showContent();
 
                 }
                 catch (Exception ex)
@@ -169,20 +153,11 @@ namespace Cwiczenie2
 
                 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                DaneStudentow ds = new DaneStudentow(plikWejściowy.content);
+                ListaStudentow ls = new ListaStudentow(ds.zestawDanychStudentow);
+                List<Student> list = ls.listaStudentow;
+                List<string> lista = ls.listaStudent;
+                PlikWyjsciowy pwyj = new PlikWyjsciowy(lista);
 
 
 
