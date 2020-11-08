@@ -31,8 +31,8 @@ namespace Cwiczenie2
             DateTime dt = DateTime.Now;
             string dataString = dt.ToString(System.Globalization.CultureInfo.CreateSpecificCulture("fr-FR"));
             zapisBledow.zapiszDoPliku("\n ROZPOCZĘTA EDYCJA PLIKU\n " + dataString + "\n");
-              
-   
+
+
 
             //gdy nie dostarczono argumentów
             if (args.Length == 0)
@@ -122,27 +122,28 @@ namespace Cwiczenie2
                 try
                 {
                     bool czySciezkaIstnie = czyPlikIstnieje(sciezka);
-                    if(czySciezkaIstnie == true)
+                    if (czySciezkaIstnie == true)
                     {
                         sciezka = replacement;
                         Console.WriteLine("sciezka istnieje");
 
                     }
-                }catch(Exception ex)
+                }
+                catch (Exception ex)
                 {
 
                     Console.WriteLine("sciezka nie istnieje");
-                    
+
                     zapisBledow.zapiszDoPliku(ex.Message + "\nPosana ścieżka nie istnieje:" + sciezka);
 
 
                 }
-                
 
 
 
 
-        
+
+
 
                 ////////////////////////////////////
 
@@ -176,6 +177,145 @@ namespace Cwiczenie2
 
                 /////////////////////////////////////////////////////////
 
+                // Mamy teraz plik wejściowy i przechowane dane, teraz gdzie je zapisać
+
+
+
+
+
+                //przeszukuje podane argumenty czy jest ścieżka docelowa
+
+                string sciezkaDocelowa = @"żesult.xml";
+                foreach (string s in args)
+                {
+
+
+
+                    bool konsowka = s.EndsWith(".xml");
+                    bool koncewkazaprostrofem = s.EndsWith(".xml" + '\u0022');
+
+                    if (konsowka == true)
+                    {
+
+                        Console.WriteLine("rowna się true" + s);
+                        sciezkaDocelowa = s;
+
+                    }
+
+                    if (koncewkazaprostrofem == true)
+                    {
+                        var replace = s.Replace("\u0022", "");
+                        Console.WriteLine("Zastopiona ściezka:" + replace);
+                        sciezkaDocelowa = replace;
+                    }
+
+
+
+
+                }
+
+
+                try
+                {
+
+                    if (czySciezkaDocelow(sciezkaDocelowa))
+                    {
+                        Console.WriteLine("scieżka docelowa -> " + sciezkaDocelowa + " jest poprawna");
+
+
+                        // sprawdzam teraz co z formatem danych 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    zapisBledow.zapiszDoPliku("Podana ścieżka nie jest poprawna ");
+                    Console.WriteLine(ex.Message);
+                    zapisBledow.zapiszDoPliku(ex.Message);
+
+
+
+                }
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -189,7 +329,7 @@ namespace Cwiczenie2
                 PlikWyjsciowy pwyj;
 
                 bool czyUtworzonoPlik = false;
-                
+
                 foreach (string s in args)
                 {
 
@@ -206,125 +346,126 @@ namespace Cwiczenie2
 
 
 
-                        if(s.Equals("JSON", StringComparison.OrdinalIgnoreCase))
+                    /*      if(s.Equals("JSON", StringComparison.OrdinalIgnoreCase))
 
-                    {
-                        Console.WriteLine(" znaleziono " + s);
-                        Console.WriteLine(" Nie można utworzyć pliku tego fromaty");
-                        zapisBledow.zapiszDoPliku(" Nie można utworzyć pliku tego fromaty: " + s);
-                        //  pwyj = new PlikWyjsciowy(lista, s)
-                        czyUtworzonoPlik = true;
+                        {
+                            Console.WriteLine(" znaleziono " + s);
+                            Console.WriteLine(" Nie można utworzyć pliku tego fromaty");
+                            zapisBledow.zapiszDoPliku(" Nie można utworzyć pliku tego fromaty: " + s);
+                            //  pwyj = new PlikWyjsciowy(lista, s)
+                            czyUtworzonoPlik = true;
 
-                    }
-                   
+                        }*/
+
+                    /*
+                                    }
+                                    if( czyUtworzonoPlik == false)
+                                    {
+
+                                        Console.WriteLine(" Nie znaleziono odpowiedniego fotmatu " +
+                                            "zostanei wygenerowany domyślny plik");
+                                        zapisBledow.zapiszDoPliku(" Nie znakeziono odpowiedniego fromatu    ");
+
+                                    }
+
+
+
+                                } */
+
+
+
+                    //         pwyj = new PlikWyjsciowy(lista);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                 }
-                if( czyUtworzonoPlik == false)
-                {
-
-                    Console.WriteLine(" Nie znaleziono odpowiedniego fotmatu " +
-                        "zostanei wygenerowany domyślny plik");
-                    zapisBledow.zapiszDoPliku(" Nie znakeziono odpowiedniego fromatu    ");
-
-                }
-               
-
 
             }
-
-
-
-            //         pwyj = new PlikWyjsciowy(lista);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         }
-
-
 
 
 
@@ -336,8 +477,13 @@ namespace Cwiczenie2
             {
                 return true;
             }
+            else
+            {
+                throw new ArgumentException("Podana ścieżka jest niepoprawna");
 
-            return false;
+            }
+
+            
         }
 
 
