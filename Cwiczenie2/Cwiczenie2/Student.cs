@@ -54,12 +54,13 @@ namespace Cwiczenie2
 
 
         public int countData { get; set; }
+        public string[] kolumny { get; set; }
 
 
 
         public Student(ZestawDanych zestaw)
         {
-
+        //  kolumny= zestaw.getZestawDanych();
             string[] args = zestaw.getZestawDanych();
             
 
@@ -72,6 +73,18 @@ namespace Cwiczenie2
             this.fathersName = args[8];
             this.studiesName = args[2];
             this.studiesMode = args[3];
+            kolumny = new string[9] {
+               
+                indexNumber,
+                    fname,
+                    lname,
+                    birthdate,
+                    email,
+                    mothersName,
+                    fathersName,
+                    studiesName,
+                    studiesMode,
+            };
 
             countData = args.Length;
 

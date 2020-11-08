@@ -38,8 +38,7 @@ namespace Cwiczenie2
                 DaneStudentow ds = new DaneStudentow(pw.content);
                 ListaStudentow ls = new ListaStudentow(ds.zestawDanychStudentow);
                 List<Student> list = ls.listaStudentow;
-
-
+            List<string> lista = ls.listaStudent;
 
 
             string[] s = {
@@ -68,23 +67,24 @@ LETSS,Let's Stop N Shop,Jaime Yorres,Owner,(415) 555-5938,87 Polk St. Suite 5,Sa
 
 
 
-            XElement cust = new XElement("uczelnie",
-           new XAttribute("createdAt", data),
-           new XAttribute("author", "Weronika Jaworek"),
-
-          from str in pw.content
+            XElement cust = new XElement("studenci",
+        
+               
+          from str in lista
           let fields = str.Split(',')
+
           select new XElement("Student",
-              new XAttribute("CustomerID", fields[0]),
-              new XElement("CompanyName", fields[1]),
-              new XElement("ContactName", fields[2]),
-              new XElement("ContactTitle", fields[3]),
+              new XAttribute("indexNumber", fields[0]),
+              new XElement("fname", fields[1]),
+              new XElement("lname", fields[2]),
+              new XElement("birthdate", fields[3]),
               new XElement("Phone", fields[4]),
-              new XElement("FullAddress",
-                  new XElement("Address", fields[5]),
-                  new XElement("City", fields[6]),
-                  new XElement("Region", fields[7]),
-                  new XElement("PostalCode", fields[8])
+              new XElement("mothersname", fields[5]),
+               new XElement("fathersname", fields[6]),
+              new XElement("studies",
+                  new XElement("name", fields[7]),
+                  new XElement("mode", fields[8])
+                 
 
               )
           )
@@ -210,10 +210,23 @@ LETSS,Let's Stop N Shop,Jaime Yorres,Owner,(415) 555-5938,87 Polk St. Suite 5,Sa
 
                         */
             var studentXml = new XDocument();
+
+
+
+
+           
+
+            DateTime dt = DateTime.Now;
+            string czas = dt.ToString(System.Globalization.CultureInfo.CreateSpecificCulture("fr-FR"));
+
+
             //Now, we are Adding the Root Element  
-            var rootElement = new XElement("Students");
+            var rootElement = new XElement("uczelnia",
+                new XAttribute("createdAt", czas),
+           new XAttribute("author", "Weronika Jaworek"));
             studentXml.Add(rootElement); //done with it  
                                          // Now we will add the child Element  
+           
 
             var e2 = new XElement(cust);
 

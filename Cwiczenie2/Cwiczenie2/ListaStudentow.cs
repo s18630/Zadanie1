@@ -10,6 +10,7 @@ namespace Cwiczenie2
     public class ListaStudentow
     {     
         public List<Student> listaStudentow;
+        public List<string> listaStudent;
         SpisBledow spis;
 
 
@@ -21,6 +22,7 @@ namespace Cwiczenie2
             listaStudentow = new List<Student>();
             spis = new SpisBledow();
             addNewStudents(zestawDanych);
+            createList();
 
         }
 
@@ -32,6 +34,7 @@ namespace Cwiczenie2
             List<ZestawDanych> zestawDanych = dane.zestawDanychStudentow;
             spis = dane.spisBledow;
             addNewStudents(zestawDanych);
+            createList();
 
 
         }
@@ -201,7 +204,27 @@ namespace Cwiczenie2
         }
 
 
+        public void createList()
+            
+        {
+            listaStudent = new List<string>();
 
+            foreach (Student student   in listaStudentow)
+            {
+
+                string[] words = student.kolumny;
+
+                var linia=  string.Join(",", words);
+                System.Console.WriteLine(linia);
+
+                listaStudent.Add(linia);
+
+
+            }
+
+
+
+        }
 
     }
 }
