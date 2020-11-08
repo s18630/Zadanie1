@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Cwiczenie2
 {
-    class DaneStudentow   
+public   class DaneStudentow   
   
     {
         public List<ZestawDanych> zestawDanychStudentow { get; set; }
@@ -46,10 +46,6 @@ namespace Cwiczenie2
 
                     DateTime thisDay = DateTime.Today;
                   
-                    
-
-
-
                     spisBledow.zapiszDoPliku("ZAPIS : " + thisDay.ToString() +
                         "\nBłąd w dodawaniu zestawu danych :\n " + s);
                     string message = ex.Message;

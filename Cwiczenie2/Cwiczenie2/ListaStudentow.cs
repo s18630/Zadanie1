@@ -6,61 +6,86 @@ using System.Xml.Serialization;
 
 namespace Cwiczenie2
 {
-    [Serializable]
-
-    public class ListaStudentow
-    {
-
-     
-        public List<Student> listaStudentow;
    
+    public class ListaStudentow
+    {     
+        public List<Student> listaStudentow;
+        SpisBledow spis;
 
-        public ListaStudentow()
-        {
-            listaStudentow = new List<Student>();
-        }
+
+
 
         public ListaStudentow(List <ZestawDanych> zestawDanych)
         {
 
             listaStudentow = new List<Student>();
+            spis = new SpisBledow();
             addNewStudents(zestawDanych);
+
+        }
+
+
+        public ListaStudentow(DaneStudentow dane)
+        {
+
+            listaStudentow = new List<Student>();
+            List<ZestawDanych> zestawDanych = dane.zestawDanychStudentow;
+            spis = dane.spisBledow;
+            addNewStudents(zestawDanych);
+
+
         }
 
 
 
-        public void addNewStudents(List <ZestawDanych> zestaw)
+
+
+
+
+
+
+
+
+
+
+
+
+        public void addNewStudents(List <ZestawDanych> zestawyDanych)
         {
-            int iloscZestawow = zestaw.Count;
+            int iloscZestawow = zestawyDanych.Count;
             int iloscDodanychStudentow = 0;
 
-           foreach(ZestawDanych zd in zestaw)
+
+             int liczaDuplikatow= 0;
+
+           foreach(ZestawDanych zd in zestawyDanych)
             {
-                Console.WriteLine(" próba stworzenia z zestawyu danych studenta");
                 Student nowyStudeny = new Student(zd);
 
                 if (isDuplicate(nowyStudeny) == false)
                 {
+                   
                     Console.WriteLine(" nie jest duplikatem wiec go dodajemy  ");
 
 
                     listaStudentow.Add(nowyStudeny);
                     iloscDodanychStudentow++;
+
                 }
                 else
                 {
-                    Console.WriteLine(" TO DUPLIKAT :(                        ");
-                    Console.WriteLine("    ");
+                    liczaDuplikatow++;
+                    spis.zapiszDoPliku(" Wykryty duplikat nr " + liczaDuplikatow);
+                   
+                    Console.WriteLine(" Zapis niemożliwy, to duplikat  ");
+                    Console.WriteLine();
                 }
                     
             }
 
             Console.WriteLine(" wczesniej bylo    " +  iloscZestawow  );
             Console.WriteLine(" zostało dodanych " + iloscDodanychStudentow);
-            Console.WriteLine(" wyswietl całaą listę                      ");
-
-            showListaStudentow();
-
+            
 
         }
 
@@ -79,6 +104,8 @@ namespace Cwiczenie2
             return listaStudentow;
         }
 
+
+
         public void addStudent(Student student)
         {
             if (isDuplicate(student) == true)
@@ -92,6 +119,14 @@ namespace Cwiczenie2
                 // sprawdź czy w liście nie ma takich samych studentów 
             }
         }
+
+
+
+
+
+
+
+
         public void showListaStudentow()
         {
             int i = 1;
@@ -108,6 +143,9 @@ namespace Cwiczenie2
 
             }
         }
+
+
+
 
         public bool isDuplicate(Student student)
         {

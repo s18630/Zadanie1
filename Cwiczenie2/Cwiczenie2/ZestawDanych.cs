@@ -53,11 +53,6 @@ namespace Cwiczenie2
 
             }
 
-
-
-
-
-
         }
 
 

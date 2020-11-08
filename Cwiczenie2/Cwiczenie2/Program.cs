@@ -30,7 +30,7 @@ namespace Cwiczenie2
             PlikWejsciowy pw = new PlikWejsciowy();
             List<string> lista = pw.getFalseContent();
      DaneStudentow ds = new DaneStudentow(lista);
-      //    ListaStudentow ls = new ListaStudentow(ds.zestawDanychStudentow);
+     ListaStudentow ls = new ListaStudentow(ds.zestawDanychStudentow);
       //    List<Student>list = ls.listaStudentow;
 
 
